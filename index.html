@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <title>AI Scanner - Deteksi Objek</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app" data-page="scanner">
+      <header id="topbar">
+        <div class="brand"><span class="logo">AI</span><span>Scanner</span></div>
+        <span id="db-status" class="status-badge">...</span>
+      </header>
+
+      <main id="layout">
+        <!-- Scanner -->
+        <section id="page-scanner" class="page active">
+          <div id="stage">
+            <video id="camera" autoplay playsinline muted></video>
+            <canvas id="canvas"></canvas>
+            <div id="overlay-msg">
+              <div class="spinner"></div>
+              <p id="overlay-text">Memulai Sistem...</p>
+            </div>
+          </div>
+
+          <aside id="rail">
+            <button class="rail-btn" id="btn-camera" disabled><span class="ico accent">📷</span><small>Kamera</small></button>
+            <button class="rail-btn" id="btn-switch" disabled><span class="ico">🔄</span><small>Switch</small></button>
+            <button class="rail-btn" id="btn-ai" disabled><span class="ico">✳️</span><small>AI Scan</small></button>
+            <button class="rail-btn" id="btn-flash" disabled><span class="ico">⚡</span><small>Flash</small></button>
+          </aside>
+
+          <div id="info">
+            <h2 id="info-class">Menunggu...</h2>
+            <p id="info-sub">Nyalakan kamera lalu tekan AI Scan</p>
+            <div id="chips"></div>
+          </div>
+        </section>
+
+        <!-- Log -->
+        <section id="page-log" class="page">
+          <div id="log-head"><h1>Detected Objects Log</h1><span id="log-count">0 items</span></div>
+          <div id="data-list"><div class="empty-state">Belum ada objek terdeteksi</div></div>
+        </section>
+      </main>
+
+      <nav id="bottom-nav">
+        <button class="nav-btn active" data-page="scanner"><span>🏠</span><small>Scanner</small></button>
+        <button class="nav-btn" data-page="log"><span>📋<b id="badge">0</b></span><small>Log Data</small></button>
+      </nav>
+      <div id="toast"></div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
